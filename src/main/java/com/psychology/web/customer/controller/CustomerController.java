@@ -25,6 +25,8 @@ public class CustomerController {
 	private CustomerService customerService;
 	@Autowired
 	private QuestionsRepository questionsRepository;
+	@Autowired
+	private ChatGPT chatGPT;
 
 	@GetMapping("/questions")
 	public ModelAndView get() {
@@ -41,7 +43,7 @@ public class CustomerController {
 	public ModelAndView post(@ModelAttribute("questions") String savedQuestions,
 	                         CustomerEntity customer,
 	                         Model model) throws Exception {
-		String response = ChatGPT.chatGPT(savedQuestions);
+		String response = chatGPT.chatGPT(savedQuestions);
 		model.addAttribute("response", response);
 		QuestionsEntity questionsEntity = customerService.saveQuestion(savedQuestions, customer, response);
 		customerService.registration(customer);
@@ -53,7 +55,7 @@ public class CustomerController {
 	@PostMapping("/skip-registration")
 	public ModelAndView skipRegistration(@ModelAttribute("questions") String savedQuestions,
 	                                     Model model) throws Exception {
-		String response = ChatGPT.chatGPT(savedQuestions);
+		String response = chatGPT.chatGPT(savedQuestions);
 		model.addAttribute("response", response);
 		return new ModelAndView("redirect:/responseGPT");
 	}

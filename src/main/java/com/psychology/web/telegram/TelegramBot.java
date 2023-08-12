@@ -19,6 +19,8 @@ public class TelegramBot extends TelegramLongPollingBot {
 	private List<String> userHistory;
 	private final BotConfig botConfig;
 
+	private ChatGPT chatGPT;
+
 	@Override
 	public String getBotUsername() {
 		return botConfig.getBotName();
@@ -36,7 +38,6 @@ public class TelegramBot extends TelegramLongPollingBot {
 		String messageText = update.getMessage().getText();
 		Long chatId = update.getMessage().getChatId();
 
-		;
 		switch (messageText) {
 			case "/start" -> message = CommandStart.init(chatId,"What you prefer?");
 			case "Consultation" -> message = CommandConsultation.init(chatId);
@@ -49,6 +50,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 		if (userHistory!=null) {
 			secondCommand(userHistory, message, messageText, chatId);
 		}
+
 
 		try {
 			execute(message);
@@ -67,7 +69,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 		if (userHistory.size() >= 2) {
 			if (userHistory.get(userHistory.size() - 2).equals("Tell me your history")) {
 				try {
-					message.setText(ChatGPT.chatGPT(messageText));
+					message.setText(chatGPT.chatGPT(messageText));
 				} catch (Exception e) {
 					message.setText("Something wrong, try to connect throw Consultation");
 				}

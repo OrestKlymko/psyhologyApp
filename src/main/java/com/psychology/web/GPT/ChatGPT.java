@@ -1,7 +1,10 @@
 package com.psychology.web.GPT;
 
+import lombok.AllArgsConstructor;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -10,16 +13,21 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.CompletableFuture;
 
-public class ChatGPT {
-	public static String chatGPT(String text) throws Exception {
-		String apiKey = "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";
 
-		String url = "https://api.openai.com/v1/engines/text-davinci-003/completions";
-		HttpURLConnection con = (HttpURLConnection) new URL(url).openConnection();
+@Component
+public class ChatGPT {
+
+	@Autowired
+	private GPTconfig gpTconfig;
+
+	public String chatGPT(String text) throws Exception {
+
+
+		HttpURLConnection con = (HttpURLConnection) new URL(gpTconfig.getUrl()).openConnection();
 
 		con.setRequestMethod("POST");
 		con.setRequestProperty("Content-Type", "application/json");
-		con.setRequestProperty("Authorization", "Bearer " + apiKey);
+		con.setRequestProperty("Authorization", "Bearer " + gpTconfig.getApiKey());
 
 		JSONObject data = new JSONObject();
 		data.put("prompt", text);
