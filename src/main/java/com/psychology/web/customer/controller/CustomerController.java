@@ -26,8 +26,6 @@ public class CustomerController {
 	@Autowired
 	private QuestionsRepository questionsRepository;
 
-	private String questions = null;
-
 	@GetMapping("/questions")
 	public ModelAndView get() {
 		return new ModelAndView("questions");
