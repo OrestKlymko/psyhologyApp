@@ -12,7 +12,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class ChatGPT {
 	public static String chatGPT(String text) throws Exception {
-		String apiKey = "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";
+		String apiKey = "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";
 
 		String url = "https://api.openai.com/v1/engines/text-davinci-003/completions";
 		HttpURLConnection con = (HttpURLConnection) new URL(url).openConnection();

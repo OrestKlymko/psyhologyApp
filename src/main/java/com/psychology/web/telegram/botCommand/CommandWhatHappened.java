@@ -5,13 +5,13 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardRemove;
 
 @Component
-public class CommandConsultation {
+public class CommandWhatHappened {
 	public static SendMessage init(long chatId) {
 
 		SendMessage message = new SendMessage();
 
 		message.setChatId(chatId);
-		message.setText("Enter your number with code of  and we call you as soon as we can");
+		message.setText("Tell me your history");
 
 		ReplyKeyboardRemove keyboardRemove = new ReplyKeyboardRemove();
 		keyboardRemove.setRemoveKeyboard(true);
@@ -20,6 +20,5 @@ public class CommandConsultation {
 		message.setReplyMarkup(keyboardRemove);
 		return message;
 	}
-
 
 }

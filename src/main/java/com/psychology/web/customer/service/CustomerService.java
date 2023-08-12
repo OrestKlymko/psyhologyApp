@@ -4,6 +4,7 @@ package com.psychology.web.customer.service;
 import com.psychology.web.customer.checker.CustomerIsValid;
 import com.psychology.web.customer.entity.CustomerEntity;
 import com.psychology.web.customer.repo.CustomerRepository;
+import com.psychology.web.questions.entity.QuestionsEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
@@ -39,5 +40,17 @@ public class CustomerService {
 		} else {
 			throw new RuntimeException("Not valid password or email");
 		}
+	}
+
+	public QuestionsEntity saveQuestion(String savedQuestions, CustomerEntity customer, String response) {
+		QuestionsEntity questionsEntity = new QuestionsEntity();
+		questionsEntity.setQuestion(savedQuestions);
+		questionsEntity.setCustomer(customer);
+		questionsEntity.setResponse(response);
+
+		List<QuestionsEntity> questionsList = customer.getQuestionsList();
+		questionsList.add(questionsEntity);
+		customer.setQuestionsList(questionsList);
+		return questionsEntity;
 	}
 }
