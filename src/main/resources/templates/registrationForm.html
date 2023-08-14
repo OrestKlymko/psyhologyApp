@@ -7,40 +7,41 @@
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 <body>
-<div class="container-sm" style="padding-top: 20px; font-size: 20px">
-    <form class="row gx-3 gy-2 align-items-center" method="post" action="/createuser">
-        <div class="col-sm-3">
-            <label class="visually-hidden" for="name">Name</label>
-            <div class="input-group">
-                <div class="input-group-text">Name</div>
-                <input type="text" class="form-control" id="name" name="name">
+<div class="container text-center" style="padding-top: 20px; font-size: 20px">
+    <div class="row">
+        <form class="row gx-3 gy-2 align-items-center" method="post" action="/createuser">
+            <div class="col-sm-3">
+                <label class="visually-hidden" for="name">Name</label>
+                <div class="input-group">
+                    <div class="input-group-text">Name</div>
+                    <input type="text" class="form-control" id="name" name="name">
+                </div>
             </div>
-        </div>
-        <div class="col-sm-3">
-            <label class="visually-hidden" for="email">Email</label>
-            <div class="input-group">
-                <div class="input-group-text">Email</div>
-                <input type="text" class="form-control" id="email" name="email">
+            <div class="col-sm-3">
+                <label class="visually-hidden" for="email">Email</label>
+                <div class="input-group">
+                    <div class="input-group-text">Email</div>
+                    <input type="text" class="form-control" id="email" name="email">
+                </div>
             </div>
-        </div>
-        <div class="col-sm-3">
-            <label class="visually-hidden" for="password">Password</label>
-            <div class="input-group">
-                <div class="input-group-text">Password</div>
-                <input type="text" class="form-control" id="password" name="password">
+            <div class="col-sm-3">
+                <label class="visually-hidden" for="password">Password</label>
+                <div class="input-group">
+                    <div class="input-group-text">Password</div>
+                    <input type="text" class="form-control" id="password" name="password">
+                </div>
             </div>
-        </div>
 
-        <div class="col-auto">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-    </form>
-
-    <form action="/skip-registration" method="post">
-        <div class="col-auto">
-            <button type="submit" class="btn btn-warning">Skip</button>
-        </div>
-    </form>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            <form action="/skip-registration" method="post">
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-warning">Skip</button>
+                </div>
+            </form>
+        </form>
+    </div>
 </div>
 </body>
 </html>
