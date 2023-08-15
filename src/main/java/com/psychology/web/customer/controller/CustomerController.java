@@ -34,7 +34,7 @@ public class CustomerController {
 	}
 
 	@PostMapping("/form")
-	public ModelAndView registrationForm(@RequestParam("flexRadioDefault") String value, Model model) throws Exception {
+	public ModelAndView registrationForm(@RequestParam("flexRadioDefault") String value, Model model) {
 		model.addAttribute("questions", value);
 		return new ModelAndView("registrationForm");
 	}
