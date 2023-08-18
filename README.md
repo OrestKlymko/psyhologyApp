@@ -1,6 +1,4 @@
 
-# Psychology app
-
 # MiaHelps: Emotional Support Service through Stories and Artificial Intelligence
 
 MiaHelps is a web service that allows users to share their emotional stories, receive responses and advice from artificial intelligence (Chat GPT), and, if desired, interact with therapists through a Telegram chatbot.
