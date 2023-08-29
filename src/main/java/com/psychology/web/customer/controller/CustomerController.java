@@ -1,18 +1,18 @@
 package com.psychology.web.customer.controller;
 
 import com.psychology.web.GPT.ChatGPT;
+import com.psychology.web.paypalService.PaypalService;
 import com.psychology.web.questions.entity.QuestionsEntity;
 import com.psychology.web.customer.entity.CustomerEntity;
 import com.psychology.web.customer.service.CustomerService;
 import com.psychology.web.questions.repo.QuestionsRepository;
+import de.micromata.paypal.PayPalRestException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 
 @Controller
@@ -27,6 +27,9 @@ public class CustomerController {
 	private QuestionsRepository questionsRepository;
 	@Autowired
 	private ChatGPT chatGPT;
+
+	@Autowired
+	private PaypalService paypalServiceTest;
 
 	@GetMapping("/questions")
 	public ModelAndView get() {
@@ -73,4 +76,14 @@ public class CustomerController {
 		return modelAndView;
 	}
 
+	@PostMapping("/pay")
+	public ModelAndView pay(@RequestParam("email") String email){
+		try {
+			paypalServiceTest.createPayment(email);
+			return new ModelAndView("payment-success");
+		} catch (PayPalRestException e) {
+			e.printStackTrace();
+			return new ModelAndView("payment-failed");
+		}
+	}
 }
